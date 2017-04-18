@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 public class Registration {
 
-	private JFrame frame;
+	private JFrame registrationframe;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -23,7 +23,7 @@ public class Registration {
 			public void run() {
 				try {
 					Registration window = new Registration();
-					window.frame.setVisible(true);
+					window.registrationframe.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,50 +42,56 @@ public class Registration {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		registrationframe = new JFrame();
+		registrationframe.setBounds(100, 100, 450, 300);
+		registrationframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		registrationframe.getContentPane().setLayout(null);
+		
 		
 		textField = new JTextField();
 		textField.setBounds(80, 11, 86, 20);
-		frame.getContentPane().add(textField);
+		registrationframe.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(80, 42, 86, 20);
-		frame.getContentPane().add(textField_1);
+		registrationframe.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(80, 73, 86, 20);
-		frame.getContentPane().add(textField_2);
+		registrationframe.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(80, 104, 86, 20);
-		frame.getContentPane().add(textField_3);
+		registrationframe.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setBounds(24, 14, 46, 14);
-		frame.getContentPane().add(lblName);
+		registrationframe.getContentPane().add(lblName);
 		
 		JLabel lblSurname = new JLabel("Surname:");
 		lblSurname.setBounds(24, 45, 46, 14);
-		frame.getContentPane().add(lblSurname);
+		registrationframe.getContentPane().add(lblSurname);
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setBounds(24, 76, 57, 14);
-		frame.getContentPane().add(lblUsername);
+		registrationframe.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(24, 107, 57, 14);
-		frame.getContentPane().add(lblPassword);
+		registrationframe.getContentPane().add(lblPassword);
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBounds(215, 175, 89, 23);
-		frame.getContentPane().add(btnRegister);
+		registrationframe.getContentPane().add(btnRegister);
+		
 	}
 
+	public void setVisible(boolean b) {
+		this.registrationframe.setVisible(b);
+		
+	}
 }

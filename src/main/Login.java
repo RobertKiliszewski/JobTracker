@@ -1,16 +1,13 @@
 package main;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 
-public class Login {
+import javax.swing.*;
+
+
+public class Login extends Registration{
 
 	private JFrame frame;
 	private JTextField username;
@@ -38,6 +35,7 @@ public class Login {
 	 */
 	public Login() {
 		initialize();
+		
 	}
 
 	/**
@@ -56,11 +54,12 @@ public class Login {
 		username.setColumns(10);
 		username.setHorizontalAlignment(JTextField.CENTER);
 		
-		//Exit
+		//Exit Button
 		JButton exitbtn = new JButton("Exit");
 		exitbtn.setBounds(10, 227, 89, 23);
 		frame.getContentPane().add(exitbtn);
-	
+		
+		//Exit Button on click
 		exitbtn.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 			    System.exit(0);
@@ -72,27 +71,31 @@ public class Login {
 		loginbtn.setBounds(335, 227, 89, 23);
 		frame.getContentPane().add(loginbtn);
 		
+		//Label	Username
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds(165, 60, 120, 14);
 		frame.getContentPane().add(lblUsername);
 		
+		//Label Password
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(165, 105, 120, 14);
 		frame.getContentPane().add(lblPassword);
 		
+		//Password field
 		passwordField = new JPasswordField();
 		passwordField.setBounds(165, 130, 120, 20);
 		frame.getContentPane().add(passwordField);
 		
+		//Register Button
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
-			
-			//click register
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Registration f = new Registration();
+				f.setVisible(true);
 				
 			}
 		});
-		
 		btnRegister.setBounds(335, 193, 89, 23);
 		frame.getContentPane().add(btnRegister);
 	}
