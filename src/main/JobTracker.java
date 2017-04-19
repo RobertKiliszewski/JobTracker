@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class JobTracker {
 
-	private JFrame frame;
+	private JFrame jobTrackerFrame;
 
 	/**
 	 * Launch the application.
@@ -17,7 +17,7 @@ public class JobTracker {
 			public void run() {
 				try {
 					JobTracker window = new JobTracker();
-					window.frame.setVisible(true);
+					window.jobTrackerFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,9 +36,15 @@ public class JobTracker {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("JobTracker");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		jobTrackerFrame = new JFrame("JobTracker");
+		jobTrackerFrame.setBounds(100, 100, 450, 300);
+		jobTrackerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jobTrackerFrame.getContentPane().setLayout(null);
 	}
+	public void setVisible(boolean b) {
+		this.jobTrackerFrame.setVisible(b);
+		
 }
+}
+
+	

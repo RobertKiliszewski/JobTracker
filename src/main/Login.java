@@ -10,37 +10,12 @@ import javax.swing.*;
 public class Login extends Registration{
 
 	private JFrame frame;
-	private JTextField username;
+	private JTextField usernameField;
 	private JPasswordField passwordField;
 
-	/*                                             DB CONNECTION                                                                                  */
-	class MysqlCon{  
-		
-		public void main(String args[]){  
-			try{  
-				Class.forName("com.mysql.jdbc.Driver");  
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root"); 
-				
-						//here sonoo is database name, root is username and password  
-						Statement stmt=con.createStatement(); 
-						
-						ResultSet rs=stmt.executeQuery("select * from Users");  
-						
-						while(rs.next())  
-							System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-						con.close();  
-						}
-			catch(Exception e)
-			{ 
-				System.out.println(e);
-			}  
-		}  
-	}  
-
-	/*                                             DB CONNECTION                                                                                  */
-	/**
-	 * Launch the application.
-	 */
+		/*
+	 	/* Launch the application.
+		 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,11 +47,17 @@ public class Login extends Registration{
 		frame.getContentPane().setLayout(null);
 		
 		//Username
-		username = new JTextField();
-		username.setBounds(165, 85, 120, 20);
-		frame.getContentPane().add(username);
-		username.setColumns(10);
-		username.setHorizontalAlignment(JTextField.CENTER);
+		usernameField = new JTextField();
+		usernameField.setBounds(165, 85, 120, 20);
+		frame.getContentPane().add(usernameField);
+		usernameField.setColumns(10);
+		usernameField.setHorizontalAlignment(JTextField.CENTER);
+		
+		//Password field
+		passwordField = new JPasswordField();
+		passwordField.setBounds(165, 130, 120, 20);
+		frame.getContentPane().add(passwordField);
+		passwordField.setHorizontalAlignment(JTextField.CENTER);
 		
 		//Exit Button
 		JButton exitbtn = new JButton("Exit");
@@ -92,6 +73,28 @@ public class Login extends Registration{
 		
 		//Login
 		JButton loginbtn = new JButton("Login");
+		/*				Login Action Listener				*/
+		loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 if(usernameField.getText().length()==0)  // Checking for empty field
+				      JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
+				   else if(passwordField.getPassword().length==0)  // Checking for empty field
+				      JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
+				   else{
+				       String user = usernameField.getText();   // Collecting the input
+				       char[] pass = passwordField.getPassword(); // Collecting the input
+				       String pwd = String.copyValueOf(pass);  // converting from array to string
+				       if(validate_login(user,pwd)){
+				          JobTracker j = new JobTracker();
+				          j.setVisible(true);
+				          }   
+				       else{
+				          JOptionPane.showMessageDialog(null, "Incorrect Login Credentials");
+				       }     
+				   }
+			}
+		});
+		/*				Login Action Listener				*/
 		loginbtn.setBounds(335, 227, 89, 23);
 		frame.getContentPane().add(loginbtn);
 		
@@ -99,16 +102,7 @@ public class Login extends Registration{
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds(165, 60, 120, 14);
 		frame.getContentPane().add(lblUsername);
-		
-		//Label Password
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(165, 105, 120, 14);
-		frame.getContentPane().add(lblPassword);
-		
-		//Password field
-		passwordField = new JPasswordField();
-		passwordField.setBounds(165, 130, 120, 20);
-		frame.getContentPane().add(passwordField);
+	
 		
 		//Register Button
 		JButton btnRegister = new JButton("Register");
@@ -123,4 +117,66 @@ public class Login extends Registration{
 		btnRegister.setBounds(335, 193, 89, 23);
 		frame.getContentPane().add(btnRegister);
 	}
+	
+
+/*	public boolean compare()
+	{   
+		try{           
+		       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
+		       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password=");     
+		       PreparedStatement pst = conn.prepareStatement("Select username, password from users");
+		       String username = null;
+		       pst.setString(1, username); 
+		       String password = null;
+		       pst.setString(2, password);
+		       ResultSet rs = pst.executeQuery();                        
+		       if(usernameField.getText() == username && passwordField.getText() == password){
+		    	   JobTracker j = new JobTracker();
+		    	   j.setVisible(true);
+		       }
+		       
+		       else if (usernameField.getText() != username && passwordField.getText() == password)
+		       {
+		    	   return false;
+		    	   
+		       }
+		       
+		       else if (usernameField.getText() == username && passwordField.getText() != password)
+		       {
+		    	   return false;
+		       }
+		        
+		       else if (usernameField.getText() != username && passwordField.getText() != password)
+		       {
+		    	   return false;
+		       }
+		   }
+		   catch(Exception e){
+		       e.printStackTrace();
+		       return false;
+		   }
+		return false;
+		      
+	}*/
+		
+		private boolean validate_login(String username,String password) {
+			   try{           
+			       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
+			       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password=");     
+			       PreparedStatement pst = conn.prepareStatement("Select * from users where username=? and password=?");
+			       pst.setString(1, username); 
+			       pst.setString(2, password);
+			       ResultSet rs = pst.executeQuery();                        
+			       if(rs.next())            
+			           return true;    
+			       else
+			           return false;            
+			   }
+			   catch(Exception e){
+			       e.printStackTrace();
+			       return false;
+			   }       
+			}
+
+	
 }
