@@ -2,7 +2,7 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.sql.*;
 
 import javax.swing.*;
 
@@ -13,7 +13,31 @@ public class Login extends Registration{
 	private JTextField username;
 	private JPasswordField passwordField;
 
-	
+	/*                                             DB CONNECTION                                                                                  */
+	class MysqlCon{  
+		
+		public void main(String args[]){  
+			try{  
+				Class.forName("com.mysql.jdbc.Driver");  
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root"); 
+				
+						//here sonoo is database name, root is username and password  
+						Statement stmt=con.createStatement(); 
+						
+						ResultSet rs=stmt.executeQuery("select * from Users");  
+						
+						while(rs.next())  
+							System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+						con.close();  
+						}
+			catch(Exception e)
+			{ 
+				System.out.println(e);
+			}  
+		}  
+	}  
+
+	/*                                             DB CONNECTION                                                                                  */
 	/**
 	 * Launch the application.
 	 */

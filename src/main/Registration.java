@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import java.awt.event.ActionEvent;
 
 public class Registration {
 
@@ -15,6 +18,8 @@ public class Registration {
 	private JTextField textField_2;
 	private JTextField textField_3;
 
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -85,6 +90,27 @@ public class Registration {
 		registrationframe.getContentPane().add(lblPassword);
 		
 		JButton btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{  
+					Class.forName("com.mysql.jdbc.Driver").newInstance();  
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/myDB","root",""); 
+					
+							Statement stmt=con.createStatement(); 
+							
+							ResultSet rs=stmt.executeQuery("insert into users (id, name, surname, username, password) values (1001, 'Test', 'test', 'test', 'test')");  
+							
+							while(rs.next())  
+								System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4) +"  "+rs.getString(5));  
+							con.close();  
+							}
+				catch(Exception e)
+				{ 
+					  System.err.println("Got an exception!");
+				      System.err.println(e.getMessage());
+				}  
+			}
+		});
 		btnRegister.setBounds(215, 175, 89, 23);
 		registrationframe.getContentPane().add(btnRegister);
 		
