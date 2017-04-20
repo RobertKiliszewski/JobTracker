@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class Registration {
 
-	private JFrame registrationframe;
+	private JFrame registrationFrame;
 	private JTextField nameField;
 	private JTextField surnameField;
 	private JTextField usernameField;
@@ -25,7 +25,7 @@ public class Registration {
 			public void run() {
 				try {
 					Registration window = new Registration();
-					window.registrationframe.setVisible(true);
+					window.registrationFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,21 +44,21 @@ public class Registration {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		registrationframe = new JFrame();
-		registrationframe.setBounds(100, 100, 450, 300);
-		registrationframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		registrationframe.getContentPane().setLayout(null);
-		registrationframe.setLocationRelativeTo(null);
+		registrationFrame = new JFrame();
+		registrationFrame.setBounds(100, 100, 450, 300);
+		registrationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		registrationFrame.getContentPane().setLayout(null);
+		registrationFrame.setLocationRelativeTo(null);
 		
 		
 		/*									Name						*/
 		JLabel lblName = new JLabel("Name:");
 		lblName.setBounds(74, 122, 96, 14);
-		registrationframe.getContentPane().add(lblName);
+		registrationFrame.getContentPane().add(lblName);
 		
 		nameField = new JTextField();
 		nameField.setBounds(180, 119, 86, 20);
-		registrationframe.getContentPane().add(nameField);
+		registrationFrame.getContentPane().add(nameField);
 		nameField.setColumns(10);
 		/*									Name						*/
 		
@@ -66,11 +66,11 @@ public class Registration {
 		/*									Surname						*/
 		JLabel lblSurname = new JLabel("Surname:");
 		lblSurname.setBounds(74, 153, 96, 14);
-		registrationframe.getContentPane().add(lblSurname);
+		registrationFrame.getContentPane().add(lblSurname);
 		
 		surnameField = new JTextField();
 		surnameField.setBounds(180, 150, 86, 20);
-		registrationframe.getContentPane().add(surnameField);
+		registrationFrame.getContentPane().add(surnameField);
 		surnameField.setColumns(10);
 		/*									Surname						*/
 		
@@ -78,11 +78,11 @@ public class Registration {
 		/*									Username						*/
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setBounds(74, 60, 96, 14);
-		registrationframe.getContentPane().add(lblUsername);
+		registrationFrame.getContentPane().add(lblUsername);
 		
 		usernameField = new JTextField();
 		usernameField.setBounds(180, 57, 86, 20);
-		registrationframe.getContentPane().add(usernameField);
+		registrationFrame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		/*									Username						*/
 		
@@ -91,11 +91,11 @@ public class Registration {
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(74, 91, 96, 14);
-		registrationframe.getContentPane().add(lblPassword);
+		registrationFrame.getContentPane().add(lblPassword);
 		
 		passwordField = new JTextField();
 		passwordField.setBounds(180, 88, 86, 20);
-		registrationframe.getContentPane().add(passwordField);
+		registrationFrame.getContentPane().add(passwordField);
 		passwordField.setColumns(10);
 		/*									Password						*/
 		
@@ -108,25 +108,25 @@ public class Registration {
 			}	
 		});
 		btnRegister.setBounds(335, 193, 89, 23);
-		registrationframe.getContentPane().add(btnRegister);
+		registrationFrame.getContentPane().add(btnRegister);
 		/*								Register BTN							*/
 		
 		/*								Cancel BTN							*/
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				registrationframe.setVisible(false);
+				registrationFrame.setVisible(false);
 			}
 		});
 		btnCancel.setBounds(335, 227, 89, 23);
-		registrationframe.getContentPane().add(btnCancel);
+		registrationFrame.getContentPane().add(btnCancel);
 		/*								Cancel BTN							*/
 	}
 	
 	
 	/*									This Allows the Frame to be visible if called from another frame via a button				*/
 	public void setVisible(boolean b) {
-		this.registrationframe.setVisible(b); 
+		this.registrationFrame.setVisible(b); 
 	}
 	
 	/*										INSERT FUNCTION FOR BUTTON 											*/
@@ -172,7 +172,7 @@ public class Registration {
 					   
 					   st.close();
 					   con.close();
-					   registrationframe.setVisible(false);
+					   registrationFrame.setVisible(false);
 				   }
 			 }
 	    	  
