@@ -5,12 +5,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.*;
+
+
 /*				Imports					*/
 
-public class JobTracker extends Settings {
+public class JobTracker{
 
 	private JFrame jobTrackerFrame;
 	private JTextField hoursField;
@@ -20,6 +25,9 @@ public class JobTracker extends Settings {
 	private JTextField prsiField;
 	private JTextField payeField;
 	public int user_id;
+	//private String WEEK_NO = "week_no";
+	//private String EARNINGS = "earnings";
+	private JTextField hourToDecimal;
 
 	/**
 	 * Launch the application.
@@ -55,16 +63,13 @@ public class JobTracker extends Settings {
 		jobTrackerFrame.setLocationRelativeTo(null);
 		jobTrackerFrame.getContentPane().setLayout(null);
 		
-	
-		
-		
 		/*						 Hours Field							 */
 		JLabel lblHoursWorked = new JLabel("Hours Worked ");
-		lblHoursWorked.setBounds(192, 192, 208, 14);
+		lblHoursWorked.setBounds(192, 103, 208, 14);
 		jobTrackerFrame.getContentPane().add(lblHoursWorked);
 		
 		hoursField = new JTextField();
-		hoursField.setBounds(192, 207, 232, 49);
+		hoursField.setBounds(192, 128, 232, 49);
 		jobTrackerFrame.getContentPane().add(hoursField);
 		hoursField.setColumns(10);
 		/*						 Hours Field							 */
@@ -72,12 +77,12 @@ public class JobTracker extends Settings {
 		
 		/*						Week Number Field						*/
 		weekNoField = new JTextField();
-		weekNoField.setBounds(50, 207, 86, 49);
+		weekNoField.setBounds(50, 128, 86, 49);
 		jobTrackerFrame.getContentPane().add(weekNoField);
 		weekNoField.setColumns(10);
 		
 		JLabel lblWeekNo = new JLabel("Week No.(Eg.24)");
-		lblWeekNo.setBounds(50, 192, 125, 14);
+		lblWeekNo.setBounds(50, 103, 125, 14);
 		jobTrackerFrame.getContentPane().add(lblWeekNo);
 		/*						Week Number Field						*/
 		
@@ -94,9 +99,9 @@ public class JobTracker extends Settings {
 		
 		/*			Button Click Action Listener			*/
 		
-		btnCalculate.setBounds(233, 267, 191, 83);
+		btnCalculate.setBounds(6, 239, 185, 40);
 		jobTrackerFrame.getContentPane().add(btnCalculate);
-		
+		/*																RADIO BUTTONS 																*/
 		JRadioButton partTimeRadio = new JRadioButton("Part Time");
 		partTimeRadio.setBounds(6, 11, 109, 23);
 		jobTrackerFrame.getContentPane().add(partTimeRadio);
@@ -104,6 +109,12 @@ public class JobTracker extends Settings {
 		JRadioButton fullTimeRadio = new JRadioButton("Full Time");
 		fullTimeRadio.setBounds(117, 11, 109, 23);
 		jobTrackerFrame.getContentPane().add(fullTimeRadio);
+		
+		ButtonGroup bG = new ButtonGroup();
+		bG.add(partTimeRadio);
+		bG.add(fullTimeRadio);
+		/*																RADIO BUTTONS 																*/
+		
 		
 		rateField = new JTextField();
 		rateField.setBounds(117, 41, 86, 20);
@@ -149,9 +160,69 @@ public class JobTracker extends Settings {
 				beforeDeducCalc();
 			}
 		});
-		button.setBounds(6, 267, 191, 83);
+		button.setBounds(6, 188, 185, 40);
 		jobTrackerFrame.getContentPane().add(button);
-		/*								Settings BTN						*/
+		
+		/*												Show Earnings BTN									*/
+		JButton btnShowEarnings = new JButton("Show Earnings");
+		btnShowEarnings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showEarnings();
+			}
+		});
+		btnShowEarnings.setBounds(6, 290, 185, 40);
+		jobTrackerFrame.getContentPane().add(btnShowEarnings);
+		
+		JLabel lblHourToDecimal = new JLabel("Hour To Decimal");
+		lblHourToDecimal.setBounds(284, 252, 150, 14);
+		jobTrackerFrame.getContentPane().add(lblHourToDecimal);
+		
+		hourToDecimal = new JTextField();
+		hourToDecimal.setBounds(281, 276, 89, 20);
+		jobTrackerFrame.getContentPane().add(hourToDecimal);
+		hourToDecimal.setColumns(10);
+		hourToDecimal.setHorizontalAlignment(JTextField.CENTER);
+		
+		JLabel label = new JLabel("0");
+		label.setBounds(286, 336, 114, 14);
+		jobTrackerFrame.getContentPane().add(label);
+		
+		
+		JButton btnConvert = new JButton("Convert");
+		btnConvert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String convert = hourToDecimal.getText();
+				double Conversion = Double.parseDouble(convert);
+				
+				double decimal = Conversion / 60;
+				
+				String decimal2 = String.valueOf(decimal);
+				
+				label.setText(decimal2);
+				
+				
+			}
+		});
+		btnConvert.setBounds(281, 299, 89, 23);
+		jobTrackerFrame.getContentPane().add(btnConvert);
+		
+		JButton hourCounterBtn = new JButton("Count Your Day Earning");
+		hourCounterBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HoursCalc hc = new HoursCalc();
+				hc.setVisible(true);
+			}
+		});
+		hourCounterBtn.setBounds(222, 188, 178, 40);
+		jobTrackerFrame.getContentPane().add(hourCounterBtn);
+		
+		
+		
+		/*												Show Earnings BTN									*/
+		
+		
+		/*												Settings BTN										*/
 		
 		
 	}
@@ -207,12 +278,44 @@ public class JobTracker extends Settings {
 		
 		double totalEarnings = rateValue * hoursWorked;
 		
-		JOptionPane.showMessageDialog(null, String.format("Your monthly payment is $%.2f") + totalEarnings);
+		JOptionPane.showMessageDialog(null, + totalEarnings);
 	}
 	
 	public void setUserID(int id){
 		this.user_id = id;
 	}
+	
+	public void showEarnings(){
+		try{     
+		       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
+		       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password=");     
+		       PreparedStatement pst = conn.prepareStatement("Select week_no, earnings from earnings where id = '"+user_id+"'");
+		       ResultSet rs = pst.executeQuery();    
+		       
+		       java.sql.ResultSetMetaData rsMetaData=rs.getMetaData();
+		       int colCount=rsMetaData.getColumnCount();
+		       
+		       ArrayList<String> weeks = new ArrayList<String>();
+		       ArrayList<String> shifts = new ArrayList<String>();
+		       
+		       while(rs.next()){
+		    	   for(int i=0;i<=colCount;i++){
+		    		   int week = rs.getInt("week_no");
+		    		   float earnings = rs.getFloat("earnings");
+		    	  
+		    		   weeks.add(String.valueOf(week));
+		    		   shifts.add(String.valueOf(earnings));
+		    	   }
+		       }
+		      String output = "Week No Earnings\n" + weeks.toString() + shifts.toString() + "\n";
+		      JOptionPane.showMessageDialog(null, output);
+		                               
+		   }
+		   catch(Exception e){
+		       e.printStackTrace();
+		      
+		   }       	}
+	
 }
 
 	

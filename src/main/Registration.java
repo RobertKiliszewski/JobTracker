@@ -14,6 +14,7 @@ public class Registration {
 	private JTextField surnameField;
 	private JTextField usernameField;
 	private JTextField passwordField;
+	private JTextField workplaceField;
 
 	
 	
@@ -121,6 +122,20 @@ public class Registration {
 		btnCancel.setBounds(335, 227, 89, 23);
 		registrationFrame.getContentPane().add(btnCancel);
 		/*								Cancel BTN							*/
+		
+		
+		/*								WorkPlace 							*/
+		JLabel lblWorkplace = new JLabel("WorkPlace:");
+		lblWorkplace.setBounds(74, 29, 96, 14);
+		registrationFrame.getContentPane().add(lblWorkplace);
+		
+		workplaceField = new JTextField();
+		workplaceField.setBounds(180, 26, 86, 20);
+		registrationFrame.getContentPane().add(workplaceField);
+		workplaceField.setColumns(10);
+		
+		/*								WorkPlace 							*/
+		
 	}
 	
 	
@@ -146,10 +161,12 @@ public class Registration {
 				  JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
 			   }
 			   else{
+				   String workplace = workplaceField.getText();
 				   String username = usernameField.getText();
 				   String password = passwordField.getText();
 				   String name = nameField.getText();
 				   String surname = surnameField.getText();
+				   
 				  
 				   /*		If username exists then username has to be changed in order to create a user 		*/
 				   if(userExists(username)){
@@ -164,12 +181,8 @@ public class Registration {
 					   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?user=root&password=");
 					   Statement st = con.createStatement();
 				   
-			
-
-					   st.executeUpdate("insert into users(username, password, name, surname) VALUES( '"+username+"','"+password+"' ,'"+name+"','"+surname+"')");
-
+					   st.executeUpdate("insert into users(work_place, username, password, name, surname) VALUES( '"+workplace+"','"+username+"','"+password+"' ,'"+name+"','"+surname+"')");
 					   JOptionPane.showConfirmDialog(null, "User Created!", "User", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-					   
 					   st.close();
 					   con.close();
 					   registrationFrame.setVisible(false);

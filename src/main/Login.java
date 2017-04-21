@@ -157,7 +157,6 @@ public class Login extends Registration{
 			    	   user_id = rs.getInt("id");
 			    	   return true;   
 			       }
-			           
 			       else
 			           return false;            
 			   }
