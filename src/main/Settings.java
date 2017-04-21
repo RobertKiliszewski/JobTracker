@@ -1,23 +1,13 @@
 package main;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-
-
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.text.html.HTMLEditorKit.Parser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
 
 public class Settings {
+	
+	private float rate;
 
 	JFrame settingsFrame;
 	private JTextField prsiField;
@@ -61,21 +51,7 @@ public class Settings {
 		settingsFrame.setBounds(100, 100, 450, 300);
 		settingsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		settingsFrame.getContentPane().setLayout(null);
-		
-		/*
-		String prsi = prsiField.getText();
-		int prsiValue = Integer.parseInt(prsi);
-		
-		String usc = uscField.getText();
-		int uscValue = Integer.parseInt(usc);
-		
-		String paye = payeField.getText();
-		int payeValue = Integer.parseInt(paye);
-		
-		String rate = rateField.getText();
-		int rateValue = Integer.parseInt(rate);
-		
-		*/
+				
 		partTimeRadioBtn = new JRadioButton("Part Time");
 		partTimeRadioBtn.setBounds(6, 7, 109, 23);
 		settingsFrame.getContentPane().add(partTimeRadioBtn);
@@ -85,9 +61,7 @@ public class Settings {
 		settingsFrame.getContentPane().add(fullTimeRadioBtn);
 		
 		
-		ButtonGroup bG = new ButtonGroup();
-		bG.add(partTimeRadioBtn);
-		bG.add(fullTimeRadioBtn);
+
 		
 		partTimeRadioBtn.setActionCommand(partTimeRadioBtn.getText());
 		fullTimeRadioBtn.setActionCommand(fullTimeRadioBtn.getText());
@@ -133,10 +107,11 @@ public class Settings {
 		lblRate.setBounds(10, 203, 46, 14);
 		settingsFrame.getContentPane().add(lblRate);
 		
-		rateField = new JTextField();
+		rateField= new JTextField();
 		rateField.setBounds(100, 200, 86, 20);
 		settingsFrame.getContentPane().add(rateField);
 		rateField.setColumns(10);
+		
 		
 		/*												RATE																	*/
 		
@@ -150,10 +125,7 @@ public class Settings {
 		});
 		btnSave.setBounds(335, 227, 89, 23);
 		settingsFrame.getContentPane().add(btnSave);
-		
 	
-		
-		
 		/*												Save BTN																	*/
 	}
 
@@ -172,5 +144,14 @@ public class Settings {
 		}
 		
 	}
-
+	
+	public void setRate(){
+		String rateValue = rateField.getText();
+		this.rate = Integer.parseInt(rateValue);	
+	}
+	public float getRate(){
+		return rate ;
+	}
+	
+	
 }

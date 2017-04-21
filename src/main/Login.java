@@ -13,6 +13,8 @@ public class Login extends Registration{
 	private JFrame loginFrame;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
+	public int user_id;
+
 
 		/*
 	 	/* Launch the application.
@@ -96,8 +98,9 @@ public class Login extends Registration{
 				       if(validate_login(user,pwd)){
 				    	   
 				    	  loginFrame.setVisible(false);
-				          JobTracker j = new JobTracker();
+				    	  JobTracker j = new JobTracker();
 				          j.setVisible(true);
+				          j.setUserID(user_id);
 				          
 				       }   
 				       else{
@@ -143,15 +146,18 @@ public class Login extends Registration{
 	
 	/*		This function does login validation while connection to the database, it checks if the fields are filled out, then proceeds to check the database for the same username and same password */
 		private boolean validate_login(String username,String password) {
-			   try{           
+			   try{     
 			       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
 			       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password=");     
 			       PreparedStatement pst = conn.prepareStatement("Select * from users where username=? and password=?");
 			       pst.setString(1, username); 
 			       pst.setString(2, password);
 			       ResultSet rs = pst.executeQuery();                        
-			       if(rs.next())            
-			           return true;    
+			       if(rs.next()){
+			    	   user_id = rs.getInt("id");
+			    	   return true;   
+			       }
+			           
 			       else
 			           return false;            
 			   }
