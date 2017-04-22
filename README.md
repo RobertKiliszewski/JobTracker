@@ -11,5 +11,5 @@ I have developed my application in Java using MySQL as a databse.
 # How to use
 
 When opening the app the user is presented with a login screen.
-(https://cloud.githubusercontent.com/assets/15819582/25305460/3e5149e4-2773-11e7-9deb-c2ea1db4a050.png)
+![alt tag](https://cloud.githubusercontent.com/assets/15819582/25305460/3e5149e4-2773-11e7-9deb-c2ea1db4a050.png)
 
