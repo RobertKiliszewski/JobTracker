@@ -286,6 +286,7 @@ public class JobTracker extends Login{
 				Login l = new Login();
 				l.setVisible(true);
 				
+				
 			}
 		});
 		logOutBTN.setBounds(169, 11, 89, 23);

@@ -98,13 +98,13 @@ public class Login extends Registration{
 				
 				 if(usernameField.getText().length()==0){
 					  // Checking for empty field
-				      JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
+				      JOptionPane.showMessageDialog(null, "Fill in all details!");
 				      
 				 }
 				 
 				   else if(passwordField.getPassword().length==0){ 
 					  // Checking for empty field
-				      JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
+				      JOptionPane.showMessageDialog(null, "Fill in all details!");
 				      
 				   }
 				 
@@ -207,4 +207,7 @@ public class Login extends Registration{
 			      
 			   }       
 			}
+		public void setVisible(boolean b) {
+			this.loginFrame.setVisible(b); 
+		}
 }
