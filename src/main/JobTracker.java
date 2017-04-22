@@ -269,6 +269,7 @@ public class JobTracker extends Login{
 			public void actionPerformed(ActionEvent e) {
 				HoursCalc hc = new HoursCalc();
 				hc.setVisible(true);
+				hc.setUserID(user_id);
 				
 			}
 		});

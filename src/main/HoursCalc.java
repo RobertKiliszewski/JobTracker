@@ -335,7 +335,7 @@ public class HoursCalc {
 		       for (String day : days) {
 		    	   	
 		    	   	output +=  day  +"/"+ months.get(index)+"/" + years.get(index) + " | "+ earnings.get(index) + "\n";
-		    	  	index ++;
+		    	  	index++;
 		    	}
 		       
 		      JOptionPane.showMessageDialog(null,"Date | Earnings\n" + output);
