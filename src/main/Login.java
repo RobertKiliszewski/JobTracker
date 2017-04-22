@@ -118,8 +118,10 @@ public class Login extends Registration{
 				    	   
 				    	  loginFrame.dispose();
 				    	  JobTracker j = new JobTracker();
+				    
 				          j.setVisible(true);
 				          j.setUserID(user_id);
+				         
 				          
 				       }//If  
 				       else{

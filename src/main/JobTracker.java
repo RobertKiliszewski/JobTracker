@@ -207,6 +207,8 @@ public class JobTracker extends Login{
 		btnShowEarnings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showEarnings();
+				HoursCalc hc = new HoursCalc();
+				hc.setUserID(user_id);
 			}
 		});
 		btnShowEarnings.setBounds(6, 290, 185, 40);
@@ -267,6 +269,7 @@ public class JobTracker extends Login{
 			public void actionPerformed(ActionEvent e) {
 				HoursCalc hc = new HoursCalc();
 				hc.setVisible(true);
+				
 			}
 		});
 		hourCounterBtn.setBounds(222, 188, 178, 40);
@@ -392,21 +395,29 @@ public class JobTracker extends Login{
 		      
 		       /*								Array To Get data from database and display it to the user						*/
 		       ArrayList<String> weeks = new ArrayList<String>();
-		       ArrayList<String> shifts = new ArrayList<String>();
+		       ArrayList<String> earnings = new ArrayList<String>();
 		       
 		       /*								While result set had results													*/
+		       earnings.clear();
+		       weeks.clear();
 		       while(rs.next()){
 		    	   
 		    		   int week = rs.getInt("week_no");
-		    		   float earnings = rs.getFloat("earnings");
+		    		   float earning = rs.getFloat("earnings");
 		    	  
 		    		   weeks.add(String.valueOf(week));
-		    		   shifts.add(String.valueOf(earnings));
+		    		   earnings.add(String.valueOf(earning));
 		
 		       }//While
-		       
-		      String output = "| Week No : " + weeks.toString() + "\n| Earnings : " + shifts.toString() + "\n";
-		      JOptionPane.showMessageDialog(null, output);
+		      int index = 0;
+		      String output = " ";
+		      
+		       for (String week : weeks) {
+		    	  output +=  week +"                  "+ earnings.get(index)+"\n";
+		    	  index++;
+		    	}
+
+		      JOptionPane.showMessageDialog(null,"WeekNO | Earnings\n" + output);
 		                               
 		   }
 		   catch(Exception e){

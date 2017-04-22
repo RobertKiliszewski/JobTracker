@@ -4,9 +4,8 @@ package main;
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.*;
+import java.util.ArrayList;
 import java.awt.Color;
 //Imports
 
@@ -22,6 +21,7 @@ public class HoursCalc {
 	public int user_id;
 	private JTextField monthField;
 	private JTextField yearField;
+	private int index = 0;
 	//Variables
 	
 	/**
@@ -190,7 +190,7 @@ public class HoursCalc {
 				
 			}
 		});
-		calcBtn.setBounds(10, 203, 194, 47);
+		calcBtn.setBounds(230, 202, 194, 20);
 		frame.getContentPane().add(calcBtn);
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////			Calculate BTN				 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,12 +206,30 @@ public class HoursCalc {
 			}
 		});
 		button.setBackground(Color.LIGHT_GRAY);
-		button.setBounds(230, 203, 194, 47);
+		button.setBounds(230, 233, 194, 20);
 		frame.getContentPane().add(button);
-		
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////			Back BTN				 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////			Show BTN				 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JButton showDaysBTN = new JButton("Show Day Earnings");
+		showDaysBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showDay();
+			}
+		});
+		showDaysBTN.setBackground(Color.LIGHT_GRAY);
+		showDaysBTN.setBounds(10, 202, 210, 52);
+		frame.getContentPane().add(showDaysBTN);
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////			Show BTN				 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+
 		
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,6 +290,63 @@ public class HoursCalc {
 		   }//Catch  
 		
 	}//HourlyCalc
+	
+	public void setUserID(int id){
+		this.user_id = id;
+	}
+	
+	public void showDay(){
+		try{     
+			
+		       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
+		       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password="); 
+		       /*											MySQL																*/
+		       PreparedStatement pst = conn.prepareStatement("Select date_day, date_month ,date_year, earned from Hours where user_ID = '"+user_id+"'");
+		       ResultSet rs = pst.executeQuery();    
+		       
+		       /*								Array To Get data from database and display it to the user						*/
+		       ArrayList<String> days = new ArrayList<String>();
+		       ArrayList<String> months = new ArrayList<String>();
+		       ArrayList<String> years = new ArrayList<String>();
+		       ArrayList<String> earnings = new ArrayList<String>();
+		       
+		       /*								While result set had results													*/
+		       days.clear();
+		       months.clear();
+		       years.clear();
+		       earnings.clear();
+		       while(rs.next()){
+		    	   
+		    		   int day = rs.getInt("date_day");
+		    		   int month = rs.getInt("date_month");
+		    		   int year = rs.getInt("date_year");
+		    		   int earned = rs.getInt("earned");
+		    	  
+		    		   days.add(String.valueOf(day));
+		    		   months.add(String.valueOf(month));
+		    		   years.add(String.valueOf(year));
+		    		   earnings.add(String.valueOf(earned));
+		
+		       }//While
+		       
+		       
+		       String output = "";
+		       
+		       for (String day : days) {
+		    	   	
+		    	   	output +=  day  +"/"+ months.get(index)+"/" + years.get(index) + " | "+ earnings.get(index) + "\n";
+		    	  	index ++;
+		    	}
+		       
+		      JOptionPane.showMessageDialog(null,"Date | Earnings\n" + output);
+		                               
+		   }
+		   catch(Exception e){
+			   
+		       e.printStackTrace();
+		    
+		   }       
+	}
 
 	public void setVisible(boolean b) {
 		this.frame.setVisible(b);
