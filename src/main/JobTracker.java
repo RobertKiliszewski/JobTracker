@@ -386,11 +386,9 @@ public class JobTracker extends Login{
 		       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
 		       Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?" + "user=root&password="); 
 		       /*											MySQL																*/
-		       PreparedStatement pst = conn.prepareStatement("Select week_no, earnings from earnings where id = '"+user_id+"'");
+		       PreparedStatement pst = conn.prepareStatement("Select week_no, earnings from earnings where user_ID = '"+user_id+"'");
 		       ResultSet rs = pst.executeQuery();    
 		       
-		       java.sql.ResultSetMetaData rsMetaData=rs.getMetaData();
-		       int colCount=rsMetaData.getColumnCount();
 		      
 		       /*								Array To Get data from database and display it to the user						*/
 		       ArrayList<String> weeks = new ArrayList<String>();
@@ -398,16 +396,16 @@ public class JobTracker extends Login{
 		       
 		       /*								While result set had results													*/
 		       while(rs.next()){
-		    	   for(int i= 0; i<=colCount; i++){
+		    	   
 		    		   int week = rs.getInt("week_no");
 		    		   float earnings = rs.getFloat("earnings");
 		    	  
 		    		   weeks.add(String.valueOf(week));
 		    		   shifts.add(String.valueOf(earnings));
-		    	   }
+		
 		       }//While
 		       
-		      String output = "Week No Earnings\n" + weeks.toString() + shifts.toString() + "\n";
+		      String output = "| Week No : " + weeks.toString() + "\n| Earnings : " + shifts.toString() + "\n";
 		      JOptionPane.showMessageDialog(null, output);
 		                               
 		   }
