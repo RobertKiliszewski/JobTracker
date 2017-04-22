@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
+import java.awt.Color;
 
 
 
@@ -49,7 +50,8 @@ public class HoursCalc {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Day Calculator");
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -66,10 +68,12 @@ public class HoursCalc {
 		finishField.setColumns(10);
 		
 		JLabel startShift = new JLabel("Start:");
+		startShift.setForeground(Color.BLACK);
 		startShift.setBounds(70, 66, 46, 14);
 		frame.getContentPane().add(startShift);
 		
 		JLabel finishShift = new JLabel("Finish:");
+		finishShift.setForeground(Color.BLACK);
 		finishShift.setBounds(70, 97, 46, 14);
 		frame.getContentPane().add(finishShift);
 		
@@ -90,14 +94,17 @@ public class HoursCalc {
 		dateField.setColumns(10);
 		
 		JLabel lblDate = new JLabel("Date:");
+		lblDate.setForeground(Color.BLACK);
 		lblDate.setBounds(70, 35, 46, 14);
 		frame.getContentPane().add(lblDate);
 		
 		JLabel lblDuration = new JLabel("Duration:");
+		lblDuration.setForeground(Color.BLACK);
 		lblDuration.setBounds(10, 154, 89, 14);
 		frame.getContentPane().add(lblDuration);
 		
 		JLabel lblAmountPaid = new JLabel("Amount Paid:");
+		lblAmountPaid.setForeground(Color.BLACK);
 		lblAmountPaid.setBounds(165, 154, 86, 14);
 		frame.getContentPane().add(lblAmountPaid);
 		
@@ -107,6 +114,7 @@ public class HoursCalc {
 		amountPaid.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Calculate");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -123,6 +131,7 @@ public class HoursCalc {
 		rateField.setColumns(10);
 		
 		JLabel lblHourlyRate = new JLabel("Hourly Rate:");
+		lblHourlyRate.setForeground(Color.BLACK);
 		lblHourlyRate.setBounds(70, 3, 89, 14);
 		frame.getContentPane().add(lblHourlyRate);
 		

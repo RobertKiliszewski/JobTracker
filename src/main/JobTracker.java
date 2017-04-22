@@ -15,7 +15,7 @@ import javax.swing.*;
 
 /*				Imports					*/
 
-public class JobTracker{
+public class JobTracker extends Login{
 
 	private JFrame jobTrackerFrame;
 	private JTextField hoursField;
@@ -58,6 +58,7 @@ public class JobTracker{
 	 */
 	public void initialize() {
 		jobTrackerFrame = new JFrame("JobTracker");
+		jobTrackerFrame.getContentPane().setBackground(Color.DARK_GRAY);
 		jobTrackerFrame.setBounds(200, 200, 450, 400);
 		jobTrackerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jobTrackerFrame.setLocationRelativeTo(null);
@@ -65,6 +66,7 @@ public class JobTracker{
 		
 		/*						 Hours Field							 */
 		JLabel lblHoursWorked = new JLabel("Hours Worked ");
+		lblHoursWorked.setForeground(Color.BLACK);
 		lblHoursWorked.setBounds(192, 103, 208, 14);
 		jobTrackerFrame.getContentPane().add(lblHoursWorked);
 		
@@ -82,6 +84,7 @@ public class JobTracker{
 		weekNoField.setColumns(10);
 		
 		JLabel lblWeekNo = new JLabel("Week No.(Eg.24)");
+		lblWeekNo.setForeground(Color.BLACK);
 		lblWeekNo.setBounds(50, 103, 125, 14);
 		jobTrackerFrame.getContentPane().add(lblWeekNo);
 		/*						Week Number Field						*/
@@ -89,6 +92,7 @@ public class JobTracker{
 		
 		/*				Calculate button						*/
 		JButton btnCalculate = new JButton("After Tax");
+		btnCalculate.setBackground(Color.LIGHT_GRAY);
 		btnCalculate.addActionListener(new ActionListener() {
 			/*			Button Click Action Listener			*/
 			public void actionPerformed(ActionEvent e) {
@@ -101,20 +105,7 @@ public class JobTracker{
 		
 		btnCalculate.setBounds(6, 239, 185, 40);
 		jobTrackerFrame.getContentPane().add(btnCalculate);
-		/*																RADIO BUTTONS 																*/
-		JRadioButton partTimeRadio = new JRadioButton("Part Time");
-		partTimeRadio.setBounds(6, 11, 109, 23);
-		jobTrackerFrame.getContentPane().add(partTimeRadio);
-		
-		JRadioButton fullTimeRadio = new JRadioButton("Full Time");
-		fullTimeRadio.setBounds(117, 11, 109, 23);
-		jobTrackerFrame.getContentPane().add(fullTimeRadio);
-		
-		ButtonGroup bG = new ButtonGroup();
-		bG.add(partTimeRadio);
-		bG.add(fullTimeRadio);
-		/*																RADIO BUTTONS 																*/
-		
+	
 		
 		rateField = new JTextField();
 		rateField.setBounds(117, 41, 86, 20);
@@ -127,6 +118,7 @@ public class JobTracker{
 		uscField.setColumns(10);
 		
 		prsiField = new JTextField();
+		prsiField.setBackground(Color.WHITE);
 		prsiField.setBounds(338, 41, 86, 20);
 		jobTrackerFrame.getContentPane().add(prsiField);
 		prsiField.setColumns(10);
@@ -137,24 +129,29 @@ public class JobTracker{
 		payeField.setColumns(10);
 		
 		JLabel lblRate = new JLabel("Rate");
+		lblRate.setForeground(Color.BLACK);
 		lblRate.setBounds(26, 41, 46, 14);
 		jobTrackerFrame.getContentPane().add(lblRate);
 		
 		JLabel lblUsc = new JLabel("Usc");
+		lblUsc.setForeground(Color.BLACK);
 		lblUsc.setBounds(26, 75, 46, 14);
 		jobTrackerFrame.getContentPane().add(lblUsc);
 		
 		JLabel lblPrsi = new JLabel("Prsi");
+		lblPrsi.setForeground(Color.BLACK);
 		lblPrsi.setBounds(250, 41, 46, 14);
 		jobTrackerFrame.getContentPane().add(lblPrsi);
 		
 		JLabel lblPaye = new JLabel("Paye");
+		lblPaye.setForeground(Color.BLACK);
 		lblPaye.setBounds(250, 75, 46, 14);
 		jobTrackerFrame.getContentPane().add(lblPaye);
 		
 		
 		
 		JButton button = new JButton("Before Tax");
+		button.setBackground(Color.LIGHT_GRAY);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				beforeDeducCalc();
@@ -165,6 +162,7 @@ public class JobTracker{
 		
 		/*												Show Earnings BTN									*/
 		JButton btnShowEarnings = new JButton("Show Earnings");
+		btnShowEarnings.setBackground(Color.LIGHT_GRAY);
 		btnShowEarnings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showEarnings();
@@ -174,6 +172,7 @@ public class JobTracker{
 		jobTrackerFrame.getContentPane().add(btnShowEarnings);
 		
 		JLabel lblHourToDecimal = new JLabel("Hour To Decimal");
+		lblHourToDecimal.setForeground(Color.BLACK);
 		lblHourToDecimal.setBounds(284, 252, 150, 14);
 		jobTrackerFrame.getContentPane().add(lblHourToDecimal);
 		
@@ -184,11 +183,13 @@ public class JobTracker{
 		hourToDecimal.setHorizontalAlignment(JTextField.CENTER);
 		
 		JLabel label = new JLabel("0");
+		label.setForeground(Color.BLACK);
 		label.setBounds(286, 336, 114, 14);
 		jobTrackerFrame.getContentPane().add(label);
 		
 		
 		JButton btnConvert = new JButton("Convert");
+		btnConvert.setBackground(Color.LIGHT_GRAY);
 		btnConvert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -208,6 +209,7 @@ public class JobTracker{
 		jobTrackerFrame.getContentPane().add(btnConvert);
 		
 		JButton hourCounterBtn = new JButton("Count Your Day Earning");
+		hourCounterBtn.setBackground(Color.LIGHT_GRAY);
 		hourCounterBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HoursCalc hc = new HoursCalc();
@@ -217,6 +219,18 @@ public class JobTracker{
 		hourCounterBtn.setBounds(222, 188, 178, 40);
 		jobTrackerFrame.getContentPane().add(hourCounterBtn);
 		
+		JButton logOutBTN = new JButton("Logout");
+		logOutBTN.setBackground(Color.LIGHT_GRAY);
+		logOutBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jobTrackerFrame.dispose();
+				Login l = new Login();
+				l.setVisible(true);
+				
+			}
+		});
+		logOutBTN.setBounds(169, 11, 89, 23);
+		jobTrackerFrame.getContentPane().add(logOutBTN);
 		
 		
 		/*												Show Earnings BTN									*/
@@ -299,7 +313,7 @@ public class JobTracker{
 		       ArrayList<String> shifts = new ArrayList<String>();
 		       
 		       while(rs.next()){
-		    	   for(int i=0;i<=colCount;i++){
+		    	   for(int i= 0; i<=colCount; i++){
 		    		   int week = rs.getInt("week_no");
 		    		   float earnings = rs.getFloat("earnings");
 		    	  
@@ -315,7 +329,6 @@ public class JobTracker{
 		       e.printStackTrace();
 		      
 		   }       	}
-	
 }
 
 	

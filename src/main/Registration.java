@@ -45,15 +45,21 @@ public class Registration {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		registrationFrame = new JFrame();
+		registrationFrame = new JFrame("Registraion");
+		registrationFrame.getContentPane().setForeground(Color.BLACK);
+		registrationFrame.getContentPane().setBackground(Color.DARK_GRAY);
 		registrationFrame.setBounds(100, 100, 450, 300);
 		registrationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		registrationFrame.getContentPane().setLayout(null);
 		registrationFrame.setLocationRelativeTo(null);
 		
 		
+		
+		
+		
 		/*									Name						*/
 		JLabel lblName = new JLabel("Name:");
+		lblName.setForeground(Color.BLACK);
 		lblName.setBounds(74, 122, 96, 14);
 		registrationFrame.getContentPane().add(lblName);
 		
@@ -66,6 +72,7 @@ public class Registration {
 		
 		/*									Surname						*/
 		JLabel lblSurname = new JLabel("Surname:");
+		lblSurname.setForeground(Color.BLACK);
 		lblSurname.setBounds(74, 153, 96, 14);
 		registrationFrame.getContentPane().add(lblSurname);
 		
@@ -78,6 +85,7 @@ public class Registration {
 		
 		/*									Username						*/
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setForeground(Color.BLACK);
 		lblUsername.setBounds(74, 60, 96, 14);
 		registrationFrame.getContentPane().add(lblUsername);
 		
@@ -91,6 +99,7 @@ public class Registration {
 		/*									Password						*/
 		
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setForeground(Color.BLACK);
 		lblPassword.setBounds(74, 91, 96, 14);
 		registrationFrame.getContentPane().add(lblPassword);
 		
@@ -103,6 +112,7 @@ public class Registration {
 		
 		/*								Register BTN							*/
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setBackground(Color.LIGHT_GRAY);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				insert();
@@ -114,6 +124,7 @@ public class Registration {
 		
 		/*								Cancel BTN							*/
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(Color.LIGHT_GRAY);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registrationFrame.setVisible(false);
@@ -126,6 +137,7 @@ public class Registration {
 		
 		/*								WorkPlace 							*/
 		JLabel lblWorkplace = new JLabel("WorkPlace:");
+		lblWorkplace.setForeground(Color.BLACK);
 		lblWorkplace.setBounds(74, 29, 96, 14);
 		registrationFrame.getContentPane().add(lblWorkplace);
 		

@@ -45,7 +45,8 @@ public class Login extends Registration{
 	 */
 	private void initialize() {
 		loginFrame = new JFrame("Login");
-		loginFrame.setBounds(100, 100, 450, 300);
+		loginFrame.getContentPane().setBackground(Color.DARK_GRAY);
+		loginFrame.setBounds(100, 100, 350, 150);
 		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		loginFrame.getContentPane().setLayout(null);
 		loginFrame.setLocationRelativeTo(null);
@@ -53,11 +54,12 @@ public class Login extends Registration{
 		
 		/*											Username								 */
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(165, 60, 120, 14);
+		lblUsername.setForeground(Color.BLACK);
+		lblUsername.setBounds(10, 11, 120, 14);
 		loginFrame.getContentPane().add(lblUsername);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(165, 85, 120, 20);
+		usernameField.setBounds(100, 8, 120, 20);
 		loginFrame.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		usernameField.setHorizontalAlignment(JTextField.CENTER);
@@ -66,11 +68,12 @@ public class Login extends Registration{
 		
 		/*											Password								 */
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(165, 105, 120, 14);
+		lblPassword.setForeground(Color.BLACK);
+		lblPassword.setBounds(10, 39, 120, 14);
 		loginFrame.getContentPane().add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(165, 130, 120, 20);
+		passwordField.setBounds(100, 36, 120, 20);
 		loginFrame.getContentPane().add(passwordField);
 		passwordField.setHorizontalAlignment(JTextField.CENTER);
 		/*											Password								 */
@@ -78,6 +81,7 @@ public class Login extends Registration{
 		
 		/*											Login BTN								 */
 		JButton loginbtn = new JButton("Login");
+		loginbtn.setBackground(Color.LIGHT_GRAY);
 		/*				Login Action Listener				*/
 		loginbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,7 +101,7 @@ public class Login extends Registration{
 				       
 				       if(validate_login(user,pwd)){
 				    	   
-				    	  loginFrame.setVisible(false);
+				    	  loginFrame.dispose();
 				    	  JobTracker j = new JobTracker();
 				          j.setVisible(true);
 				          j.setUserID(user_id);
@@ -110,13 +114,14 @@ public class Login extends Registration{
 			}
 		});		
 		/*								Login Action Listener								*/
-		loginbtn.setBounds(335, 227, 89, 23);
+		loginbtn.setBounds(230, 35, 89, 23);
 		loginFrame.getContentPane().add(loginbtn);
 		/*											Login BTN								 */
 		
 		/*											Exit BTN								 */
 		JButton exitbtn = new JButton("Exit");
-		exitbtn.setBounds(10, 227, 89, 23);
+		exitbtn.setBackground(Color.LIGHT_GRAY);
+		exitbtn.setBounds(10, 64, 89, 23);
 		loginFrame.getContentPane().add(exitbtn);
 		
 		//Exit Button on click
@@ -130,6 +135,7 @@ public class Login extends Registration{
 
 		/*								Register BTN											*/
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setBackground(Color.LIGHT_GRAY);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -138,7 +144,7 @@ public class Login extends Registration{
 				
 			}
 		});
-		btnRegister.setBounds(335, 193, 89, 23);
+		btnRegister.setBounds(230, 7, 89, 23);
 		loginFrame.getContentPane().add(btnRegister);
 		/*								Register BTN											*/
 		
