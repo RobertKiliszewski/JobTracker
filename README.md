@@ -19,5 +19,11 @@ Following that they will need to Register their new Account where they will need
 ![alt tag](https://cloud.githubusercontent.com/assets/15819582/25305459/3e512176-2773-11e7-9a02-96be064efe2b.png)   
       
 If their username already exists they will need to make a unique username in order to create the account          
-![alt tag](https://cloud.githubusercontent.com/assets/15819582/25305739/a67b9308-2778-11e7-8f30-6a85edbb1c1b.png)        
+![alt tag](https://cloud.githubusercontent.com/assets/15819582/25305739/a67b9308-2778-11e7-8f30-6a85edbb1c1b.png)    
+
+After a successful user creation and login, the user will be brought to the main page where they will be asked to input many things in order to get a calculation.       
+![alt tag](https://cloud.githubusercontent.com/assets/15819582/25305458/3e4fea86-2773-11e7-9f79-729f0fa91524.png)   
+      
+In this Window the user is asked for their rate as a decimal number(eg.9.50) or full number(eg.12) depending on their hourly rate 
+
 
