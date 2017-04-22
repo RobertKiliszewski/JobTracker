@@ -7,3 +7,8 @@ I have developed my application in Java using MySQL as a databse.
 # System Requirements
 1. Windows 7 and above
 2. Java
+
+# How to use
+
+When opening the app the user is presented with a login screen.
+
