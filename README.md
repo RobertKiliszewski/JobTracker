@@ -1,10 +1,10 @@
-#Requirements
+# Requirements
 1. Latest Java
 2. MySQL
 
 ***
 
-#UserGuide
+# UserGuide
 
 You can watch the [Demo](http://youtu.be/OL6WtJMRzHc?hd=1) to see how to use the app or follow the steps below.
 
